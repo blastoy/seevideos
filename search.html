@@ -4,8 +4,8 @@
 <div class="search-body">
   
   <div class="search-column-1">
-    <div class="search-selector-up" ng-mouseenter="handleMouseEnter({ function: 'scroll', parameters: ['scrollable-1', -2] })" ng-mouseleave="handleMouseLeave()">UP</div>
-    <div class="search-selector-down" ng-mouseenter="handleMouseEnter({ function: 'scroll', parameters: ['scrollable-1', 2] })" ng-mouseleave="handleMouseLeave()">DOWN</div>
+    <div class="search-selector-up">UP</div>
+    <div class="search-selector-down">DOWN</div>
     <div class="search-text">
       <span>{{ working }}</span>
       <button class="spaceButton" ng-mouseenter="handleMouseEnter({ function: 'spacePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()">|__|</button>
@@ -21,8 +21,8 @@
   </div>
     
   <div class="search-column-2">
-    <div class="search-selector-up" ng-mouseenter="handleMouseEnter({ function: 'scroll', parameters: ['scrollable-2', -2] })" ng-mouseleave="handleMouseLeave()" style="width:275px;left:0;background-color:blue;">UP</div>
-    <div class="search-selector-down" ng-mouseenter="handleMouseEnter({ function: 'scroll', parameters: ['scrollable-2', 2] })" ng-mouseleave="handleMouseLeave()" style="width:275px;left:0;background-color:blue;">DOWN</div>
+    <div class="search-selector-up" style="width:275px;left:0;background-color:blue;">UP</div>
+    <div class="search-selector-down" style="width:275px;left:0;background-color:blue;">DOWN</div>
     <div class="search-results" id="scrollable-2">
       <div ng-repeat="video in videos | search:working" ng-mouseenter="handleMouseEnter({ function: 'selectVideo', parameters: [$index] })" ng-mouseleave="handleMouseLeave()" class="search-result-block"><img ng-src="{{ video.img }}"></div>
     </div>

@@ -8,8 +8,8 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
   $scope.selected = null;
   
   var timer;
-  var scroloc_1 = 0;
-  var scroloc_2 = 0;
+//  var scroloc_1 = 0;
+//  var scroloc_2 = 0;
   
   $scope.handleMouseEnter = function(action) {
     DEBUG && console.log('Handling Mouse Enter Event');
@@ -44,11 +44,11 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
       case 'playPressed':
         playPressed();
         break;
-      case 'scroll':
-        scroll(action.parameters[0], action.parameters[1]);
-        action.delay = 1;
-        $scope.handleMouseEnter(action);
-        break;
+//      case 'scroll':
+//        scroll(action.parameters[0], action.parameters[1]);
+//        action.delay = 1;
+//        $scope.handleMouseEnter(action);
+//        break;
       default: break;
     }
   }
@@ -74,26 +74,26 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
     $state.go('play');
   }
   
-  // not the best solution. optimize later
-  function scroll_helper(scroloc, id, amount) {
-    scroloc += amount;
-    
-    var target = angular.element(document.getElementById(id));  
-    
-    if(scroloc < 0) scroloc = 0;
-    else if(scroloc > target[0].offsetHeight) scroloc = target[0].offsetHeight;
-    
-    target[0].scrollTop = scroloc;
-    
-    return scroloc;
-  }
-  
-  // not the best solution. optimize later
-  function scroll(id, amount) {
-    if(id == 'scrollable-1') scroloc_1 = scroll_helper(scroloc_1, id, amount);
-    else if(id == 'scrollable-2') scroloc_2 = scroll_helper(scroloc_2, id, amount);
-    else return;
-  }
+//  // not the best solution. optimize later
+//  function scroll_helper(scroloc, id, amount) {
+//    scroloc += amount;
+//    
+//    var target = angular.element(document.getElementById(id));  
+//    
+//    if(scroloc < 0) scroloc = 0;
+//    else if(scroloc > target[0].offsetHeight) scroloc = target[0].offsetHeight;
+//    
+//    target[0].scrollTop = scroloc;
+//    
+//    return scroloc;
+//  }
+//  
+//  // not the best solution. optimize later
+//  function scroll(id, amount) {
+//    if(id == 'scrollable-1') scroloc_1 = scroll_helper(scroloc_1, id, amount);
+//    else if(id == 'scrollable-2') scroloc_2 = scroll_helper(scroloc_2, id, amount);
+//    else return;
+//  }
 });
 app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoFactory) {
   $scope.selected = VideoFactory.getSelectedVideo();
