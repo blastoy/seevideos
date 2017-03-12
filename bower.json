@@ -1,0 +1,31 @@
+{
+  "name": "SeeVideos",
+  "authors": [
+    "Guido Ruiz <guidoruiz4@gmail.com>"
+  ],
+  "description": "A video catalogue application user friendly to disabled or paralyzed people.",
+  "main": "index.html",
+  "keywords": [
+    "see",
+    "videos",
+    "disabled",
+    "paralyzed",
+    "video",
+    "catalogue",
+    "player"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-ui-router": "^0.4.2"
+  }
+}

@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"></link>
+  </head>
+  
+  <body ng-app="seevideos">
+    <ui-view></ui-view>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+ 
+  
+    <!-- VIDEOGULAR IMPORTS -->
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/videogular/videogular.js"></script>
+    <script src="bower_components/videogular-controls/vg-controls.js"></script>
+    <script src="bower_components/videogular-overlay-play/vg-overlay-play.js"></script>
+    <script src="bower_components/videogular-poster/vg-poster.js"></script>
+    <script src="bower_components/videogular-buffering/vg-buffering.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+    
+    
+    <!-- PREVENTS SCROLLING WITH MOUSE WHEEL -->
+    <script>
+      window.onwheel = function() { return false; }
+    </script>
+    
+    <script src="js/app.js"></script>
+  </body>
+</html>
