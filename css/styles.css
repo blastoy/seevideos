@@ -4,8 +4,37 @@ html, body, ui-view {
   padding: 0;
 }
 
+nav {
+  height: 64px;
+  border-bottom: 1px solid #666666;
+  width: 100%;
+  background-color: #333333;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+nav h3 {
+  line-height: 65px;
+  vertical-align: middle;
+  color: white;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+
+nav .person {
+  width: 40px;
+  height: 40px;
+  top: 13px;
+  right: 15px;
+  position: absolute;
+  background-color: gray;
+  border-radius: 50%;
+}
+
 body {
-  background-color: green;
+  /*background-color: green;*/
+  background-color: #151515;
 }
 
 .left {
@@ -29,6 +58,9 @@ body {
   font-size: 1.5em;
   padding: 0;
   margin: 0;
+  position:relative;
+  top:50%;
+  transform: translateY(-50%);
 }
 
 button, img {
@@ -38,7 +70,21 @@ button, img {
 /* PLAY SCREEN CSS */
 .player {
   position: relative;
-  background-color: bisque;
+/*  background-color: bisque;*/
+  color: white;
+  font-size: 0.8em;
+}
+
+.player p {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+
+.player p:hover {
+  font-size: 2em;
+  
+  transition: all 1s;
+  -webkit-transition: all 1s;
 }
 
 .player-full {
@@ -65,7 +111,7 @@ button, img {
   left: 0;
   width: 100px;
   height: 100px;
-  background-color: darkslategray;
+/*  background-color: darkslategray;*/
 }
 
 .left-scrub-fast {
@@ -74,7 +120,7 @@ button, img {
   left: 100px;
   width: 100px;
   height: 100px;
-  background-color: greenyellow;
+/*  background-color: greenyellow;*/
 }
 
 .left-scrub-normal {
@@ -83,7 +129,7 @@ button, img {
   left: 200px;
   width: 100px;
   height: 100px;
-  background-color: thistle;
+/*  background-color: thistle;*/
 }
 
 .right-scrub-fastest {
@@ -92,7 +138,7 @@ button, img {
   right: 0;
   width: 100px;
   height: 100px;
-  background-color: rosybrown;
+/*  background-color: rosybrown;*/
 }
 
 .right-scrub-fast {
@@ -101,7 +147,7 @@ button, img {
   right: 100px;
   width: 100px;
   height: 100px;
-  background-color: navajowhite;
+/*  background-color: navajowhite;*/
 }
 
 .right-scrub-normal {
@@ -110,7 +156,7 @@ button, img {
   right: 200px;
   width: 100px;
   height: 100px;
-  background-color: darkorchid;
+/*  background-color: darkorchid;*/
 }
 
 .volume-up {
@@ -119,7 +165,8 @@ button, img {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: cadetblue;
+  font-size: 1.5em;
+/*  background-color: cadetblue;*/
 }
 
 .video-refresh {
@@ -128,7 +175,7 @@ button, img {
   width: 100px;
   left: 0;
   position: absolute;
-  background-color: goldenrod;
+/*  background-color: goldenrod;*/
 }
 
 .video-language {
@@ -137,7 +184,7 @@ button, img {
   width: 100px;
   left: 0;
   position: absolute;
-  background-color: lawngreen;
+/*  background-color: lawngreen;*/
 }
 
 .video-cc {
@@ -146,7 +193,7 @@ button, img {
   width: 100px;
   left: 0;
   position: absolute;
-  background-color: tomato;
+/*  background-color: tomato;*/
 }
 
 .video-close {
@@ -155,7 +202,9 @@ button, img {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: gray;
+/*  background-color: gray;*/
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .video-options {
@@ -164,7 +213,7 @@ button, img {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: firebrick;
+/*  background-color: firebrick;*/
 }
 
 .volume-mute {
@@ -173,7 +222,12 @@ button, img {
   height: calc(100% - 200px);
   top: 100px;
   left: 0;
-  background-color: aquamarine;
+/*  background-color: aquamarine;*/
+  line-height: calc(100% - 200px);
+}
+
+.volume-mute p {
+  vertical-align: middle;
 }
 
 .volume-down {
@@ -182,7 +236,8 @@ button, img {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: dodgerblue;
+  font-size: 2.5em;
+/*  background-color: dodgerblue;*/
 }
 
 .volume-status {
@@ -190,52 +245,79 @@ button, img {
   bottom: 0;
   right: 0;
   position: absolute;
-  background-color: red;
+/*  background-color: red;*/
+  background-color: white;
 }
 
 .menuButton {
+  cursor: pointer;
   top: 0;
   left: 0;
   width: 100px;
   height: 100px;
   position: absolute;
-  background-color: orange;
+/*  background-color: #151515;*/
+  background-image: url('../img/menu.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.2;
+/*  background-color: orange;*/
   z-index: 999;
+  transition: all 3;
+  -webkit-transition: all 1s;
+}
+
+.menuButton:hover {
+  opacity: 1; 
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  
 }
 
 .options-tab-top {
+  cursor: pointer;
   position: absolute;
   top: -100px;
   height: 100px;
   width: 100%;
   left: 0;
-  background-color: yellowgreen;
+  background-color: #151515;
+/*  background-color: #333333;*/
+  background-repeat: no-repeat;
+  background-position: center;
+  
 }
 
 .options-tab-bottom {
+  cursor: pointer;
   position: absolute;
   bottom: -100px;
   height: 100px;
   width: 100%;
   left: 0;
-  background-color: indianred;
+  background-color: #151515;
+/*  background-color: indianred;*/
 }
 
 .options-tab-left {
+  cursor: pointer;
   position: absolute;
   left: -100px;
   height: 100%;
   width: 100px;
   top: 0;
-  background-color: cornsilk;
+  background-color: #151515;
+/*  background-color: cornsilk;*/
 }
 
 .options-tab-leftest {
+  cursor: pointer;
   position: absolute;
   height: calc(100% - 100px);
   width: 100px;
   top: 0;
-  background-color: gold;
+/*  background-color: gold;*/
+  background-color: #151515;
   z-index: 998;
 }
 
@@ -253,33 +335,36 @@ button, img {
 }
 
 .options-tab-right {
+  cursor: pointer;
   position: absolute;
   right: -100px;
   height: 100%;
   width: 100px;
   top: 0;
-  background-color: cornsilk;
+/*  background-color: cornsilk;*/
+  background-color: #151515;
 }
 
 .video {
   width: 100%;
   height: 100%;
-  background-color:plum;
+/*  background-color:plum;*/
 }
 
 /* SEARCH SCREEN CSS */
 .search-body {
-  height: calc(100% - 75px);
-  background-color: orange;
+  height: calc(100% - 85px);
+  background-color: #151515;
   min-width: 800px;
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
 }
 
 .search-column-1 {
   height: 100%;
-  background-color: purple;
+  /*background-color: purple;*/
+  background-color: #151515;
   width: 350px;
   float: left;
   position: relative;
@@ -287,11 +372,13 @@ button, img {
 
 .search-selector {
   padding: 50px 0;
-  height: calc(100% - 100px);
-  background-color: yellow;
-  width: 120px;
+  height: calc(100% - 102px);
+  background-color: #222222;
+  border: 1px solid #666666;
+  width: 118px;
   float: right;
   overflow-y: scroll;
+  border-radius: 3px;
 }
 
 .search-selector-up,
@@ -302,51 +389,65 @@ button, img {
 .search-selector-up {
   position: absolute;
   height: 50px;
-  top: 0;
-  right: 0;
-  width: 120px;
-  background-color: black;
+  top: 1px;
+  right: 1px;
+  width: 118px;
+/*  border-left: 2px solid #666666;
+  border-right: 2px solid #666666;*/
+  background-color: #333333;
+  opacity: 0.75;
   color: white;
   z-index: 999;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .search-selector-down {
   position: absolute;
   height: 50px;
-  bottom: 0;
-  right: 0;
-  width: 120px;
-  background-color: black;
+  bottom: 1px;
+  right: 1px;
+  width: 118px;
+/*  border-left: 2px solid #666666;
+  border-right: 2px solid #666666;*/
+  background-color: #333333;
+  opacity: 0.75;
   color: white;
   z-index: 999;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .search-selector-letter {
-  margin: 10px;
-  width: 100px;
-  height: 100px;
-  background-color: azure;
+  margin: 15px 14px;
+  width: 90px;
+  height: 90px;
+  background-color: #222222;
   cursor: pointer;
+  color: white;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  font-size: 2em;
 }
 
 .search-selector-letter:hover {
-  background-color: red;
-  -webkit-transition: background-color 3s; /* Safari */
-  transition: background-color 3s;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  font-size: 3em;
 }
 
 .search-selector-letter p {
-  line-height: 100px;
+  line-height: 90px;
   margin: 0;
   padding: 0;
   vertical-align: middle;
   text-align: center;
-  font-size: 2em;
 }
 
 .search-text {
   position: relative;
-  background-color: lavender;
+  /*background-color: lavender;*/
+  background-color: #151515;
   width: 230px;
   float: left;
   height: 120px;
@@ -362,7 +463,7 @@ button, img {
 
 .search-text span {
   font-size: 2em;
-  background-color: black;
+  /*background-color: black;*/
   color: white;
   overflow: hidden; 
   white-space: pre;
@@ -373,81 +474,204 @@ button, img {
 }
 
 .spaceButton {
-  width: calc(50% - 15px);
-  left: 10px;
+  width: 50px;
+  right: 70px;
   bottom: 10px;
   height: 50px;
   position: absolute;
+  background-color: #222222;
+  border: 1px solid #666666;
+  color: white;
+  border-radius: 3px;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  outline: none;
 }
 
 .backButton {
-  width: calc(50% - 15px);
+  width: 50px;
   right: 10px;
   bottom: 10px;
   height: 50px;
   position: absolute;
+  background-color: #222222;
+  border: 1px solid #666666;
+  color: white;
+  border-radius: 3px;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  outline: none;
+}
+
+.backButton:hover, .spaceButton:hover {
+  background-color: #444444;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
 }
 
 .search-column-2 {
   height: 100%;
-  background-color: purple;
-  width: calc(100% - 350px);
-  float: left;
+  background-color: #151515;
+  width: calc(100% - 360px);
+  float: right;
   position: relative;
 }
 
 .search-results {
-  background-color: bisque;
-  height: calc(100% - 100px);
-  padding: 50px 0;
-  width: 275px;
+  background-color: #222222;
+  height: calc(100% - 102px);
+  padding: 50px 10px;
+  width: 255px;
   float: left;
   overflow-y: scroll;
+  border: 1px solid #666666;
+  border-radius: 3px;
 }
 
 .search-details {
-  width: calc(100% - 315px);
+  width: calc(100% - 335px);
+  margin-right: 10px;
   padding: 20px;
   float: right;
   height: calc(100% - 40px);
   overflow: hidden;
-  background-color: burlywood;
+  background-color: #151515;
   object-fit: cover;
   position: relative;
+  color: white;
+}
+
+.share-close {
+  width: 50px;
+  height: 50px;
+}
+
+.share-close {
+  line-height: 50px;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.share-screen {
+  width: 400px;
+  bottom: 0px;
+  position: absolute;
+  right: 10px;
+  background-color: #333333;
+  min-height: 200px;
+  z-index: 1000;
+  padding: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px solid #666666;
+  color: white; 
+}
+
+.share-screen ul {
+  background-color: green;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  background-color: #333333;
+  max-height: 140px;
+  overflow-y: scroll;
+}
+
+.share-screen li {
+  background-color: #333333;
+  height: 20px;
+  padding: 10px;  
+  transition: all 3s;
+  -webkit-transition: all 3s;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.share-screen li:hover {
+  background-color: #666666;
+  transition: all 3s;
+  -webkit-transition: all 3s;
 }
 
 .playButton {
-  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  width: calc(100% - 40px);
+}
+
+.sendButton {
   bottom: 70px;
-  right: 10px;
-  width: calc(100% - 20px);
-  height: 50px;
+  right: 20px;
+  width: calc(100% - 40px);
+}
+
+.facebookButton {
+  bottom: 10px;
+  left: 20px;
+  width: calc(50% - 25px);
+}
+
+.twitterButton {
+  bottom: 10px;
+  right: 20px;
+  width: calc(50% - 25px);
 }
 
 .shareButton {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: calc(50% - 15px);
-  height: 50px;
+  bottom: 0px;
+  right: 20px;
+  width: calc(50% - 25px);
 }
 
 .addButton {
+  bottom: 0px;
+  left: 20px;
+  width: calc(50% - 25px);
+}
+
+.addButton, .shareButton, .playButton, .facebookButton, .twitterButton, .share-close, .sendButton {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: calc(50% - 15px);
   height: 50px;
+  background-color: #222222;
+  border: 1px solid #666666;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+}
+
+.addButton:hover, .shareButton:hover, .playButton:hover, .facebookButton:hover, .twitterButton:hover, .share-close:hover, .sendButton:hover {
+  background-color: #444444;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
 }
 
 .search-result-block img {
   height: 100%;
   width: 100%;
+  border-radius: 3px;
+  border: 1px solid #151515;
+  opacity: 0.7;
+  -webkit-transition: all 1s; /* Safari */
+  transition: all 1s;
+}
+
+.search-result-block img:hover {
+  opacity: 1;
+  -webkit-transition: all 1s; /* Safari */
+  transition: all 1s;
 }
 
 .search-result-block {
-  width: calc(100% - 20px);
-  margin: 10px;
+  width: 100%;
+  margin: 10px 0;
   height: 150px;
-  background-color: aqua;
+  background-color: #151515;
+  border-radius: 3px;
 }

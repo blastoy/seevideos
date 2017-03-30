@@ -1,11 +1,18 @@
-<nav style="height:75px;width:100%;background-color:brown;">
-  <h3 style="line-height:75px;vertical-align:center;margin-left:20px;">SeeVideos</h3>
+<nav>
+  <h3>SeeVideos</h3>
+  <div class="person"></div>
 </nav>
+
+
+
+
+
+
 <div class="search-body">
   
   <div class="search-column-1">
-    <div class="search-selector-up">UP</div>
-    <div class="search-selector-down">DOWN</div>
+    <div class="search-selector-up"></div>
+    <div class="search-selector-down"></div>
     <div class="search-text">
       <span>{{ working }}</span>
       <button class="spaceButton" ng-mouseenter="handleMouseEnter({ function: 'spacePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()">|__|</button>
@@ -20,18 +27,18 @@
     <div class="clearfix"></div>
   </div>
     
-  <div class="search-column-2">
-    <div class="search-selector-up" style="width:275px;left:0;background-color:blue;">UP</div>
-    <div class="search-selector-down" style="width:275px;left:0;background-color:blue;">DOWN</div>
+  <div class="search-column-2" ng-show="hasResults">
+    <div class="search-selector-up" style="width:275px;left:1;"></div>
+    <div class="search-selector-down" style="width:275px;left:1;"></div>
     <div class="search-results" id="scrollable-2">
-      <div ng-repeat="video in videos | search:working" ng-mouseenter="handleMouseEnter({ function: 'selectVideo', parameters: [$index] })" ng-mouseleave="handleMouseLeave()" class="search-result-block"><img ng-src="{{ video.img }}"></div>
+      <div ng-repeat="video in videos | search: working:this" ng-mouseenter="handleMouseEnter({ function: 'selectVideo', parameters: [$index] })" ng-mouseleave="handleMouseLeave()" class="search-result-block"><img ng-src="{{ video.img }}"></div>
     </div>
     <div class="search-details">
       <h2>{{ selected.name }}</h2>
       <p>{{ selected.description }}</p>
 
       <button ng-show="selected" ng-mouseenter="handleMouseEnter({ function: 'playPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()" class="playButton">Play</button>
-      <button ng-show="selected" class="shareButton">Share</button>
+      <button ng-show="selected" ng-mouseenter="handleMouseEnter({ function: 'sharePressed', parameters: [true] })" ng-mouseleave="handleMouseLeave()" class="shareButton">Share</button>
       <button ng-show="selected" class="addButton">Add</button>
     </div>
     <div class="clearfix"></div>
@@ -39,4 +46,15 @@
     
   <div class="clearfix"></div>
   
+</div>
+  
+<div ng-show="sharing" class="share-screen">
+  <p style="float:left;color:white;font-size:1.2em;">Choose Friends to Share</p>
+  <div ng-mouseenter="handleMouseEnter({ function: 'sharePressed', parameters: [false] })" ng-mouseleave="handleMouseLeave()" class="share-close" style="position:relative;float:right;">x</div>
+  <div class="clearfix"></div>
+  <p>You won't believe the video I just found on SeeVideos! I sent you a link to go check it out. You don't even need to make an account to start watching. Let me know what you think!</p>
+  <ul style="margin-bottom: 120px;"><li ng-repeat="friend in friends">{{ friend.name }}</li></ul>
+  <button class="sendButton">Send</button>
+  <button class="facebookButton">Facebook</button>
+  <button class="twitterButton">Twitter</button>
 </div>

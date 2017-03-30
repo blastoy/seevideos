@@ -1,5 +1,5 @@
 <div class="player" ng-class="fullscreen ? 'player-full' : 'player-min'">
-  <div class="menuButton" ng-mouseover="handleMouseEnter({ function: 'menuPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Menu</p></div>
+  <div class="menuButton" ng-mouseover="handleMouseEnter({ function: 'menuPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text"></p></div>
   <div class="options-tab-top" ng-mouseover="handleMouseEnter({ function: 'playbackPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Play/Pause</p></div>
   <div class="options-tab-bottom">
     <div class="left-scrub-fastest" ng-mouseenter="handleMouseEnter({ function: 'scrub', parameters: [-300] })" ng-mouseleave="handleMouseLeave()"><p class="center-text"><<<</p></div>
@@ -10,18 +10,18 @@
     <div class="right-scrub-fastest" ng-mouseenter="handleMouseEnter({ function: 'scrub', parameters: [300] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">>>></p></div>
   </div>
   <div class="options-tab-left">
-    <div class="video-close" ng-mouseenter="handleMouseEnter({ function: 'closePressed', parameters: [], delay: 2000 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Close</p></div>
+    <div class="video-close" ng-mouseenter="handleMouseEnter({ function: 'closePressed', parameters: [], delay: 2000 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Back</p></div>
     <div class="volume-mute" ng-mouseenter="handleMouseEnter({ function: 'mutePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Mute</p></div>
-    <div class="video-options" ng-mouseenter="handleMouseEnter({ function: 'optionsPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Options</p></div>
+    <div class="video-options" ng-mouseenter="handleMouseEnter({ function: 'optionsPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">More</p></div>
   </div>
   <div class="options-tab-leftest" ng-class="options ? 'options-tab-leftest-visible' : 'options-tab-leftest-hidden'">
-    <div class="video-refresh" ng-mouseenter="handleMouseEnter({ function: 'refreshPressed', parameters: [], delay: 2000 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Refresh</p></div>
-    <div class="video-language"><p class="center-text">Language</p></div>
+    <div class="video-refresh" ng-mouseenter="handleMouseEnter({ function: 'refreshPressed', parameters: [], delay: 2000 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">Reload</p></div>
+    <div class="video-language"><p class="center-text">Lang.</p></div>
     <div class="video-cc"><p class="center-text">CC</p></div>
   </div>
   <div class="options-tab-right">
-    <div class="volume-up" ng-mouseover="handleMouseEnter({ function: 'modifyVolume', parameters: [0.05] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">+</p></div>
-    <div class="volume-down" ng-mouseover="handleMouseEnter({ function: 'modifyVolume', parameters: [-0.05] })" ng-mouseleave="handleMouseLeave()"><p class="center-text">-</p></div>
+    <div class="volume-up" ng-mouseover="handleMouseEnter({ function: 'modifyVolume', parameters: [0.05], delay: 500 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">+</p></div>
+    <div class="volume-down" ng-mouseover="handleMouseEnter({ function: 'modifyVolume', parameters: [-0.05], delay: 500 })" ng-mouseleave="handleMouseLeave()"><p class="center-text">-</p></div>
     <div class="volume-status" ng-style="{'height': volume * 100 + '%'}"></div>
   </div>
   <div class="video">

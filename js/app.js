@@ -1,15 +1,38 @@
 var app = angular.module('seevideos', ['ui.router', 'ngSanitize', 'com.2fdevs.videogular', 'com.2fdevs.videogular.plugins.controls', 'com.2fdevs.videogular.plugins.overlayplay', 'com.2fdevs.videogular.plugins.poster']);
 var DELAY = 1000; var DEBUG = true;
 
-app.controller('SearchController', function($scope, $timeout, $document, $state, VideoFactory) {
+app.controller('SearchController', function($scope, $timeout, $window, $state, VideoFactory) {
   $scope.working = "";
   $scope.videos = VideoFactory.videos;
   $scope.letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   $scope.selected = null;
+  $scope.sharing = false;
   
   var timer;
 //  var scroloc_1 = 0;
 //  var scroloc_2 = 0;
+  
+  $scope.friends = [
+    {
+      name: "Joey Wong"
+    },
+    {
+      name: "Jason Stuart"
+    },
+    {
+      name: "Norman Freed"
+    },
+    {
+      name: "Konnie Basie"
+    },
+    {
+      name: "Fernando Rodriguez"
+    },
+    {
+      name: "Miller Ruiz"
+    }
+    
+  ];
   
   $scope.handleMouseEnter = function(action) {
     DEBUG && console.log('Handling Mouse Enter Event');
@@ -22,6 +45,8 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
     DEBUG && console.log('Handling Mouse Leave Event');
     $timeout.cancel(timer);
   }
+  
+  $window.onwheel = function() { $timeout.cancel(timer); }
   
   function callAction(action) {
     switch(action.function) {
@@ -49,6 +74,9 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
 //        action.delay = 1;
 //        $scope.handleMouseEnter(action);
 //        break;
+      case 'sharePressed':
+        sharePressed(action.parameters[0]);
+        break;
       default: break;
     }
   }
@@ -72,6 +100,10 @@ app.controller('SearchController', function($scope, $timeout, $document, $state,
   function playPressed() {
     VideoFactory.setSelectedVideo($scope.selected);
     $state.go('play');
+  }
+  
+  function sharePressed(state) {
+    $scope.sharing = state;
   }
   
 //  // not the best solution. optimize later
@@ -108,9 +140,7 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
   
   $scope.config = {
       sources: [
-          { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.mp4"), type: "video/mp4" },
-          { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"), type: "video/webm" },
-          { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg" }
+          { src: $sce.trustAsResourceUrl("vids/vid1.mp4"), type: "video/mp4" }
       ],
       tracks: [
           {
@@ -307,8 +337,8 @@ app.factory('VideoFactory', function() {
 
 /* got online at: https://ciphertrick.com/2015/02/07/live-search-using-custom-filter-in-angular-js/ */
 app.filter('search', function() {
-  return function(arr, working) {
-    if(working == "") return [];
+  return function(arr, working, scope) {
+    if(working == "") { scope.hasResults = false; return []; }
 
     working = working.toLowerCase();
     var result = [];
@@ -317,6 +347,10 @@ app.filter('search', function() {
       if(item.name.toLowerCase().indexOf(working) !== -1)
         result.push(item);
     });
+    
+    console.log(result.length);
+    if(result.length > 0) scope.hasResults = true;
+    else scope.hasResults = false;
         
     return result;
   };
