@@ -1,12 +1,41 @@
 <nav>
-  <h3>SeeVideos</h3>
-  <div class="person"></div>
+  <h3><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;SeeVideos</h3>
 </nav>
 
-
-
-
-
+<div class="popup-shade" ng-show="tutorial"></div>
+<div class="popup" ng-show="tutorial">
+  <button class="closeButton" ng-mouseenter="handleMouseEnter({ function: 'closePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><i class="fa fa-times" aria-hidden="true"></i></button>
+  <div class="popup-content">
+    <h1 style="margin-top: 0;">How to Use SeeVideos</h1>
+    <h2>The Basics</h2>
+    <ul>
+      <li>This website was designed to provide a video catalogue service to paralyzed people</li>
+      <li>It works by having all the elements and behaviors controlled using the user's eye gaze</li>
+      <li>In other words, there is no clicking. To 'activate' a button, hover over it for 3-5 seconds</li>
+      <li>Some elements constantly activate as you hold your mouse over it</li>
+      <li>Elements that refresh/close pages require a longer hover to prevent accidental maneuvers</li>
+    </ul>
+    <h2>Searching a Video</h2>
+    <ul>
+      <li>Search for a video by hovering over the letters that make up the title</li>
+      <li>As you search, videos will appear next to the letter selector column</li>
+      <li>Hover over a video thumbnail to select the video</li>
+      <li>Once selected, you can view a short description of the video and start playing</li>
+    </ul>
+    
+    <img src="img/help-1.png">
+    
+    <h2>Controlling a Video</h2>
+    <ul>
+      <li>As your video plays, you can hover over the top left corner to toggle the menu</li>
+      <li>Within the menu you can set subtitles, scrub, change volume, mute, and return back to the search screen.</li>
+      <li>At any time you can close the menu and maximize the video by hovering over the menu button again</li>
+    </ul>
+    
+    <img src="img/help-2.png">
+    
+  </div>
+</div>
 
 <div class="search-body">
   
@@ -15,8 +44,9 @@
     <div class="search-selector-down"></div>
     <div class="search-text">
       <span>{{ working }}</span>
-      <button class="spaceButton" ng-mouseenter="handleMouseEnter({ function: 'spacePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()">|__|</button>
-      <button class="backButton" ng-mouseenter="handleMouseEnter({ function: 'backPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><--</button>  
+      <button class="spaceButton" ng-mouseenter="handleMouseEnter({ function: 'spacePressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><i class="glyphter icon-spacebar" aria-hidden="true"></i></button>
+      <button class="backButton" ng-mouseenter="handleMouseEnter({ function: 'backPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><i class="glyphter icon-backspace" aria-hidden="true"></i></button>  
+      <button class="clearButton" ng-mouseenter="handleMouseEnter({ function: 'clearPressed', parameters: [] })" ng-mouseleave="handleMouseLeave()"><i class="fa fa-trash" aria-hidden="true"></i></button>
       <div class="clearfix"></div>
     </div>
     <div class="search-selector" id="scrollable-1">  
@@ -31,7 +61,10 @@
     <div class="search-selector-up" style="width:275px;left:1;"></div>
     <div class="search-selector-down" style="width:275px;left:1;"></div>
     <div class="search-results" id="scrollable-2">
-      <div ng-repeat="video in videos | search: working:this" ng-mouseenter="handleMouseEnter({ function: 'selectVideo', parameters: [$index] })" ng-mouseleave="handleMouseLeave()" class="search-result-block"><img ng-src="{{ video.img }}"></div>
+      <div ng-repeat="video in videos | search: working:this" ng-mouseenter="handleMouseEnter({ function: 'selectVideo', parameters: [$index] })" ng-mouseleave="handleMouseLeave()" class="search-result-block">
+        <div class="search-video-overlay">{{ video.name }}</div>
+        <img ng-src="{{ video.img }}">
+      </div>
     </div>
     <div class="search-details">
       <h2>{{ selected.name }}</h2>
@@ -50,7 +83,11 @@
   
 <div ng-show="sharing" class="share-screen">
   <p style="float:left;color:white;font-size:1.2em;">Choose Friends to Share</p>
-  <div ng-mouseenter="handleMouseEnter({ function: 'sharePressed', parameters: [false] })" ng-mouseleave="handleMouseLeave()" class="share-close" style="position:relative;float:right;">x</div>
+  
+  <button class="closeButton" ng-mouseenter="handleMouseEnter({ function: 'sharePressed', parameters: [false] })" ng-mouseleave="handleMouseLeave()"><i class="fa fa-times" aria-hidden="true"></i></button>
+  
+  
+  
   <div class="clearfix"></div>
   <p>You won't believe the video I just found on SeeVideos! I sent you a link to go check it out. You don't even need to make an account to start watching. Let me know what you think!</p>
   <ul style="margin-bottom: 120px;"><li ng-repeat="friend in friends">{{ friend.name }}</li></ul>

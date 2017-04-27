@@ -2,6 +2,7 @@ html, body, ui-view {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 
 nav {
@@ -55,12 +56,12 @@ body {
   line-height: 100px;
   vertical-align: middle;
   text-align: center;
-  font-size: 1.5em;
   padding: 0;
   margin: 0;
   position:relative;
-  top:50%;
+  top: 50%;
   transform: translateY(-50%);
+  width: 100%;
 }
 
 button, img {
@@ -72,19 +73,6 @@ button, img {
   position: relative;
 /*  background-color: bisque;*/
   color: white;
-  font-size: 0.8em;
-}
-
-.player p {
-  transition: all 1s;
-  -webkit-transition: all 1s;
-}
-
-.player p:hover {
-  font-size: 2em;
-  
-  transition: all 1s;
-  -webkit-transition: all 1s;
 }
 
 .player-full {
@@ -165,7 +153,7 @@ button, img {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 1.5em;
+/*  font-size: 1.5em;*/
 /*  background-color: cadetblue;*/
 }
 
@@ -203,8 +191,18 @@ button, img {
   top: 0;
   left: 0;
 /*  background-color: gray;*/
-  background-position: center;
-  background-repeat: no-repeat;
+  
+}
+
+.video-title {
+  position: absolute;
+  top: 30px;
+  left: 100px;
+  width: calc(100% - 150px);
+  z-index: 99;
+  background-color: black;
+  opacity: 0.7;
+  padding: 10px;
 }
 
 .video-options {
@@ -236,7 +234,7 @@ button, img {
   position: absolute;
   bottom: 0;
   left: 0;
-  font-size: 2.5em;
+/*  font-size: 2.5em;*/
 /*  background-color: dodgerblue;*/
 }
 
@@ -260,17 +258,17 @@ button, img {
   background-image: url('../img/menu.png');
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.1;
 /*  background-color: orange;*/
   z-index: 999;
   transition: all 3;
-  -webkit-transition: all 1s;
+  -webkit-transition: all 3s;
 }
 
 .menuButton:hover {
   opacity: 1; 
-  transition: all 1s;
-  -webkit-transition: all 1s;
+  transition: all 3s;
+  -webkit-transition: all 3s;
   
 }
 
@@ -285,7 +283,6 @@ button, img {
 /*  background-color: #333333;*/
   background-repeat: no-repeat;
   background-position: center;
-  
 }
 
 .options-tab-bottom {
@@ -351,7 +348,32 @@ button, img {
 /*  background-color:plum;*/
 }
 
-/* SEARCH SCREEN CSS */
+.options-tab-top, .left-scrub-normal, .left-scrub-fast,
+.left-scrub-fastest, .right-scrub-normal, .right-scrub-fast,
+.right-scrub-fastest, .video-close, .volume-mute, .video-options,
+.video-refresh, .video-language, .video-cc, .volume-up, .volume-down {
+  font-size: 1.25em;
+  
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+
+.options-tab-top:hover, .left-scrub-normal:hover, .left-scrub-fast:hover,
+.left-scrub-fastest:hover, .right-scrub-normal:hover, .right-scrub-fast:hover,
+.right-scrub-fastest:hover, .video-close:hover, .volume-mute:hover, .video-options:hover,
+.video-refresh:hover, .video-language:hover, .video-cc:hover, .volume-up:hover, .volume-down:hover
+{
+  font-size: 2em;
+  
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+
+
+
+
+
+
 .search-body {
   height: calc(100% - 85px);
   background-color: #151515;
@@ -475,6 +497,22 @@ button, img {
 
 .spaceButton {
   width: 50px;
+  right: 130px;
+  bottom: 10px;
+  height: 50px;
+  position: absolute;
+  background-color: #222222;
+  border: 1px solid #666666;
+  color: white;
+  border-radius: 3px;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  outline: none;
+  font-size: 1em;
+}
+
+.backButton {
+  width: 50px;
   right: 70px;
   bottom: 10px;
   height: 50px;
@@ -486,9 +524,10 @@ button, img {
   -webkit-transition: all 3s; /* Safari */
   transition: all 3s;
   outline: none;
+  font-size: 1em;
 }
 
-.backButton {
+.clearButton {
   width: 50px;
   right: 10px;
   bottom: 10px;
@@ -501,9 +540,27 @@ button, img {
   -webkit-transition: all 3s; /* Safari */
   transition: all 3s;
   outline: none;
+  font-size: 1em;
 }
 
-.backButton:hover, .spaceButton:hover {
+.closeButton {
+  width: 50px;
+  top: 10px;
+  right: 10px;
+  height: 50px;
+  position: absolute;
+  background-color: #222222;
+  border: 1px solid #666666;
+  color: white;
+  border-radius: 3px;
+  -webkit-transition: all 3s; /* Safari */
+  transition: all 3s;
+  outline: none;
+  font-size: 1em;
+}
+
+.backButton:hover, .spaceButton:hover, 
+.clearButton:hover, .closeButton:hover {
   background-color: #444444;
   -webkit-transition: all 3s; /* Safari */
   transition: all 3s;
@@ -550,7 +607,7 @@ button, img {
 
 .share-close {
   line-height: 50px;
-  font-size: 2em;
+  font-size: 1em;
   color: white;
   text-align: center;
   cursor: pointer;
@@ -656,16 +713,6 @@ button, img {
   height: 100%;
   width: 100%;
   border-radius: 3px;
-  border: 1px solid #151515;
-  opacity: 0.7;
-  -webkit-transition: all 1s; /* Safari */
-  transition: all 1s;
-}
-
-.search-result-block img:hover {
-  opacity: 1;
-  -webkit-transition: all 1s; /* Safari */
-  transition: all 1s;
 }
 
 .search-result-block {
@@ -674,4 +721,82 @@ button, img {
   height: 150px;
   background-color: #151515;
   border-radius: 3px;
+  position: relative;
+}
+
+/* SEARCH SCREEN CSS */
+.search-video-overlay {
+  background-color: black;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  
+  z-index: 10;
+  opacity: 0.5;
+  -webkit-transition: all 1s; /* Safari */
+  transition: all 1s;
+}
+
+.search-video-overlay:hover {
+  opacity: 0.7;
+  -webkit-transition: all 1s; /* Safari */
+  transition: all 1s;
+}
+
+.glyphter {
+    /*Set font family style as sample*/
+    font-family: glyphter !important;
+}
+
+.popup {
+  position: fixed;
+  width: 800px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-400px, -300px);
+  background-color: whitesmoke;
+  border-radius: 5px;
+  z-index: 1001;
+  border: 1px solid #666666;
+  background-color: #333333;
+  color: white;
+}
+
+.popup img {
+  width: 100%;
+  border: 1px solid #666666;
+}
+
+.popup-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: orange;
+  border-top-right-radius: 5px;
+}
+
+.popup-content {
+  padding: 20px;
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+}
+
+.popup-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 1000;
 }

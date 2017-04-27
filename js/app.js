@@ -7,6 +7,7 @@ app.controller('SearchController', function($scope, $timeout, $window, $state, V
   $scope.letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   $scope.selected = null;
   $scope.sharing = false;
+  $scope.tutorial = true;
   
   var timer;
 //  var scroloc_1 = 0;
@@ -63,6 +64,13 @@ app.controller('SearchController', function($scope, $timeout, $window, $state, V
         $scope.selected = null;
         $scope.handleMouseEnter(action);
         break;
+      case 'clearPressed':
+        clearPressed();
+        $scope.selected = null;
+        break;
+      case 'closePressed':
+        closePressed();
+        break;
       case 'selectVideo': 
         selectVideo(action.parameters[0]);
         break;
@@ -91,6 +99,14 @@ app.controller('SearchController', function($scope, $timeout, $window, $state, V
   
   function spacePressed() {
     $scope.working += " ";
+  }
+  
+  function clearPressed() {
+    $scope.working = "";
+  }
+  
+  function closePressed() {
+    $scope.tutorial = false;
   }
   
   function backPressed() {
@@ -133,6 +149,9 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
   $scope.options = false;
   $scope.volume = 0;
   
+  $scope.isPlaying = true;
+  $scope.isMute = true;
+  
   var muted = false;
   var oldvol = 0;
   var timer;
@@ -153,7 +172,7 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
       ],
       theme: "bower_components/videogular-themes-default/videogular.css",
       plugins: {
-          poster: "http://www.videogular.com/assets/images/videogular.png"
+          //poster: "http://www.videogular.com/assets/images/videogular.png"
       },
       autoPlay: true,
   };
@@ -173,6 +192,7 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
   $scope.playerLoaded = function(API) {
     player = API;
     $scope.volume = player.volume;
+    $scope.isMute = (player.volume == 0); // update volume
   };
   
   $scope.volumeUpdated = function(volume) {
@@ -208,6 +228,8 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
         refreshPressed();
         break;
       default: break;  
+        
+      $scope.$apply();
     }
   }
   
@@ -219,6 +241,7 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
   function playbackPressed() {
     if(player == null) return;
     player.playPause();
+    $scope.isPlaying = (player.currentState == 'play');
   }
   
   function modifyVolume(amount) {  
@@ -231,13 +254,23 @@ app.controller('PlayController', function($scope, $timeout, $state, $sce, VideoF
     else if(target < 0) { target = 0 }
     
     player.setVolume(target);
+    $scope.isMute = (player.volume == 0); // update volume
   }
   
   function mutePressed() {
     if(player == null) return;
     
-    if(muted) { muted = false; player.setVolume(oldvol); oldvol = 0; }
-    else { muted = true; oldvol = player.volume; player.setVolume(0); }
+    if(muted) { 
+      muted = false; 
+      player.setVolume(oldvol); 
+      oldvol = 0; 
+    } else { 
+      muted = true;
+      oldvol = player.volume; 
+      player.setVolume(0); 
+    }
+    
+    $scope.isMute = (player.volume == 0); // update volume
   }
   
   function closePressed() {
@@ -356,7 +389,10 @@ app.filter('search', function() {
   };
 });
 
-app.config(function($stateProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
+  
+  $urlRouterProvider.otherwise('');
+  
   $stateProvider.state('search', {
     url: '',
     controller: 'SearchController',
@@ -364,7 +400,6 @@ app.config(function($stateProvider) {
   });
   
   $stateProvider.state('play', {
-    url: '/play',
     controller: 'PlayController',
     templateUrl: 'play.html'
   });
